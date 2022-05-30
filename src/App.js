@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Peoples from "./Components/peoples/peoples";
+import FormPeople from "./Components/formPeople/FormPeople";
+import styles from './global.module.scss';
+import { useEffect } from "react";
+import {settingStore} from "./store";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () =>{
+    const toggleDarkTheme = settingStore(state => state.toggleDarkTheme);
+    const darkTheme = settingStore(state => state.darkTheme);
+
+    const handleChangeTheme = () =>{
+        toggleDarkTheme();
+    }
+
+    const renderTheme = (darkTheme) =>{
+        if(darkTheme){
+            return styles['dark-theme']
+        }else{
+            return styles['white-theme'];
+        }
+    }
+ 
+
+    return(
+        <div className={renderTheme(darkTheme)}>
+            <button onClick={()=>{handleChangeTheme()}}>Toggle Dark Theme</button>
+            <FormPeople/>
+            <Peoples/>
+        </div>
+    )
 }
 
 export default App;

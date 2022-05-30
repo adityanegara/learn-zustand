@@ -1,0 +1,2 @@
+A) Apa itu Zustand?
+    : Zustand ialah library state management yang kecil dan scallable dan mudah digunakan.
